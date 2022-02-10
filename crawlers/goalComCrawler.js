@@ -19,12 +19,13 @@ export const getGoalNews = async(pageNum) => {
 				article_link: card.find('td a').attr('href')
 			}
 
+			// console.log(content)
+
 			let isValid = true
 
 			Object.values(content).forEach((contentValue) => {
-				if(!contentValue) {
+				if(!contentValue && isValid) {
 					isValid = false
-					console.log('Empty card content, returning...')
 				}
 			})
 
@@ -56,12 +57,12 @@ export const getGoalNews = async(pageNum) => {
 	return fetchedContent
 }
 
-export const getGoalArticleByUrl = async (article_link) => {
-	const url = `${article_link.startsWith('/en') ? `${process.env.WS_GOALCOM}${article_link}` : article_link}`
-	console.log(url)
+// export const getGoalArticleByUrl = async (article_link) => {
+// 	const url = `${article_link.startsWith('/en') ? `${process.env.WS_GOALCOM}${article_link}` : article_link}`
+// 	console.log(url)
 
-	axios.get(url).then((res) => {
-		const $ = cheerio.load(res.data)
-		console.log(pretty($.html()))
-	})
-}
+// 	axios.get(url).then((res) => {
+// 		const $ = cheerio.load(res.data)
+// 		console.log(pretty($.html()))
+// 	})
+// }

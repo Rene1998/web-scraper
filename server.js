@@ -2,7 +2,7 @@ import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
 
-import { getGoalNews, getGoalArticleByUrl } from './crawlers/goalComCrawler.js';
+import { getGoalNews } from './crawlers/goalComCrawler.js';
 
 const app = express()
 app.use(cors())
@@ -20,8 +20,8 @@ initCrawlers()
 
 app.get('/goal-com/fetched-news', (req, res) => res.json(goalNewsContent))
 
-app.post('/goal-com/fetched-article', async (req, res) => {
-	console.log(req.body)
-	const article = await getGoalArticleByUrl(req.body.url)
-	res.json(article)
-})
+// app.post('/goal-com/fetched-article', async (req, res) => {
+// 	console.log(req.body)
+// 	const article = await getGoalArticleByUrl(req.body.url)
+// 	res.json(article)
+// })
